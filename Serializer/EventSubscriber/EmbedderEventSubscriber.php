@@ -43,11 +43,10 @@ class EmbedderEventSubscriber implements EventSubscriberInterface
     protected $typeParser;
 
     public function __construct(ContentFactoryInterface $contentFactory, MetadataFactoryInterface $serializerMetadataFactory,
-        LinksAwareWrapperFactoryInterface $linksAwareWrapperFactory, ParametersFactoryInterface $parametersFactory, TypeParser $typeParser = null)
+        ParametersFactoryInterface $parametersFactory, TypeParser $typeParser = null)
     {
         $this->contentFactory = $contentFactory;
         $this->serializerMetadataFactory = $serializerMetadataFactory;
-        $this->linksAwareWrapperFactory = $linksAwareWrapperFactory;
         $this->parametersFactory = $parametersFactory;
         $this->typeParser = $typeParser ?: new TypeParser();
     }
@@ -120,8 +119,9 @@ class EmbedderEventSubscriber implements EventSubscriberInterface
     protected function getRelationContent(Event $event, $content, RelationMetadataInterface $relationMetadata)
     {
         $parameters = $this->parametersFactory->createParameters($event->getObject(), $relationMetadata->getParams());
-
+return $content;
         return $this->linksAwareWrapperFactory->create($content, $relationMetadata->getRoute(), $parameters) ?: $content;
+
     }
 
     protected function getContentType(RelationContentMetadataInterface $relationContentMetadata)

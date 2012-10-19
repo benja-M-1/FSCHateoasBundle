@@ -7,10 +7,9 @@ use JMS\SerializerBundle\Serializer\GenericSerializationVisitor;
 use JMS\SerializerBundle\Serializer\GraphNavigator;
 use JMS\SerializerBundle\Serializer\XmlSerializationVisitor;
 
-use FSC\HateoasBundle\Model\LinksAwareWrapper;
 use FSC\HateoasBundle\Serializer\LinkSerializationHelper;
 
-class LinksAwareWrapperHandler implements SubscribingHandlerInterface
+class MetadataAwareHandler implements SubscribingHandlerInterface
 {
     public static function getSubscribingMethods()
     {
@@ -19,7 +18,7 @@ class LinksAwareWrapperHandler implements SubscribingHandlerInterface
             $methods[] = array(
                 'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => $format,
-                'type' => 'FSC\HateoasBundle\Model\LinksAwareWrapper',
+                'type' => 'FSC\HateoasBundle\Model\MetadataAware',
                 'method' => 'serializeTo'.('xml' == $format ? 'XML' : 'Array'),
             );
         }

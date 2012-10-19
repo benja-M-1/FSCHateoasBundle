@@ -56,6 +56,8 @@ class RelationsMetadataBuilder implements RelationsMetadataBuilderInterface
         }
 
         $this->relationsMetadata[] = $relationMetadata;
+
+        return $this;
     }
 
     public function build()

@@ -14,6 +14,11 @@ class PostController extends Controller
     {
         $postsPager = $this->get('test.provider.post')->getPostsPager();
 
+        $metadataAwareBuilder = $this->get('fsc_hateoas.factory.metadata_aware_builder')->create($postsPager);
+        $metadataAware = $metadataAwareBuilder
+            ->addPagerfantaRelations($postsPager)
+            ->build()
+        ;
         $linksAwareWrapper = $this->get('fsc_hateoas.factory.links_aware_wrapper')->create($postsPager); // Automatically add self/first/last/prev/next links
         $postsCollection = new PostsCollection($linksAwareWrapper); // Class that holds relations data (ie: create form relation)
 

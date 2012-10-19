@@ -47,7 +47,7 @@ class FSCHateoasExtension extends ConfigurableExtension
         }
 
         $container
-            ->getDefinition('fsc_hateoas.metadata.factory')
+            ->getDefinition('fsc_hateoas.metadata.base_factory')
             ->replaceArgument(2, $config['metadata']['debug'])
         ;
 

@@ -33,8 +33,10 @@ class RelationMetadatasBuilderTest extends \PHPUnit_Framework_TestCase
     {
         $RelationsMetadataBuilder = new RelationsMetadataBuilder();
 
-        $RelationsMetadataBuilder->add('self', array('route' => $route = '_some_route'));
-        $RelationsMetadataBuilder->add('self', array('route' => $route2 = '_some_route2'));
+        $RelationsMetadataBuilder
+            ->add('self', array('route' => $route = '_some_route'))
+            ->add('self', array('route' => $route2 = '_some_route2'))
+        ;
 
         $relationsMetadata = $RelationsMetadataBuilder->build();
 

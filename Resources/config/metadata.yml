@@ -1,5 +1,6 @@
 parameters:
-    fsc_hateoas.metadata.factory.class: Metadata\MetadataFactory
+    fsc_hateoas.metadata.factory.class: FSC\HateoasBundle\Metadata\MetadataFactory
+    fsc_hateoas.metadata.base_factory.class: Metadata\MetadataFactory
     fsc_hateoas.metadata.driver.chain.class: Metadata\Driver\DriverChain
     fsc_hateoas.metadata.driver.lazy_loading.class: Metadata\Driver\LazyLoadingDriver
     fsc_hateoas.metadata.driver.yaml.class: FSC\HateoasBundle\Metadata\Driver\YamlDriver
@@ -10,6 +11,11 @@ parameters:
 services:
     fsc_hateoas.metadata.factory:
         class: %fsc_hateoas.metadata.factory.class%
+        arguments:
+            - @fsc_hateoas.metadata.base_factory
+
+    fsc_hateoas.metadata.base_factory:
+        class: %fsc_hateoas.metadata.base_factory.class%
         arguments:
             - @fsc_hateoas.metadata.driver.lazy_loading
             - null
